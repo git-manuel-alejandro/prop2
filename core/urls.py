@@ -18,6 +18,9 @@ from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+
+from publicacion.api.urls import router_publicacion
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Blog API",
@@ -38,5 +41,7 @@ urlpatterns = [
          cache_timeout=0), name='schema-swagger-ui'),
     path('redocs/', schema_view.with_ui('redoc',
          cache_timeout=0), name='schema-redoc'),
-    path('api/', include('users.api.routers'), name='users')
+    path('api/', include('users.api.routers'), name='users'),
+    path('api/', include(router_publicacion.urls)),
+
 ]
